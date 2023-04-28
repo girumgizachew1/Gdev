@@ -5,7 +5,7 @@ function View() {
 
   const widthx = useSelector(state => state.width.width)
   console.log(widthx)
-  const [size, setSize] = useState({ width: 991, height: 859 });
+  const [size, setSize] = useState({ width: 991, height: 880 });
   const [isResizing, setIsResizing] = useState(false);
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
 
@@ -28,7 +28,7 @@ function View() {
       >
         {/* main content here */}
         <div>
-          
+
         </div>
 
       </div>
