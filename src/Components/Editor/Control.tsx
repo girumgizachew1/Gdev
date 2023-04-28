@@ -2,7 +2,9 @@ import React from 'react'
 
 function Control() {
   return (
-    <div className="text-red-600" >Control</div>
+    <div className=" w-72 bg-zinc-800 h-full">
+      
+    </div>
   )
 }
 
