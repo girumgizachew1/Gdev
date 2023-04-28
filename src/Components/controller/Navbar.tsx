@@ -1,10 +1,6 @@
 import React from 'react'
-
 import { BsFillCloudArrowUpFill } from 'react-icons/bs';
-
-
 import { MdDelete } from 'react-icons/md';
-
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import { BsFillPlayFill } from 'react-icons/bs';
 import { BiRefresh } from 'react-icons/bi';
