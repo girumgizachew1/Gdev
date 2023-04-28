@@ -32,7 +32,6 @@ function Navbar() {
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><BiRefresh/></button>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><IoArrowUndoOutline /></button>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm ' ><IoArrowRedoOutline /></button>
-                <h1 className='p-2 text-zinc-300' >user:</h1>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' >Login</button>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' >Register</button>
             </div>
