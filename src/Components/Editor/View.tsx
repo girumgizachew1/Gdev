@@ -27,6 +27,9 @@ function View() {
         className='bg-zinc-800 border-4 border-zinc-500'
       >
         {/* main content here */}
+        <div>
+          
+        </div>
 
       </div>
     
