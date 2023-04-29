@@ -55,7 +55,7 @@ function ScreenController() {
         <button className='w-full text-right pr-1' onClick={handleXSClick}>XS</button>
       </div>
 
-      <div className="bg-zinc-700 w-72 p-4 my-2 flex items-center justify-between text-white space-x-10">
+      <div className="bg-zinc-800 w-72 p-4 my-2 flex items-center justify-between text-white space-x-10">
         <a>
           <FiSettings />
         </a>
@@ -63,7 +63,7 @@ function ScreenController() {
         <p></p>
       </div>
 
-      <div className={`w-40 flex justify-left   border-l-2 border-white ${width < 576 ? " bg-orange-400 text-zinc-800" : "bg-zinc-600 text-white"} `}>
+      <div className={`w-40 flex justify-left   border-r-2 border-white ${width < 576 ? " bg-orange-400 text-zinc-800" : "bg-zinc-600 text-white"} `}>
         <button className='w-full text-left pl-1' onClick={handleXSClick}>320</button>
       </div>
 
