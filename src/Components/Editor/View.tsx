@@ -19,8 +19,8 @@ function View() {
     const handleMouseMove = (e:any) => {
       if (isResizing) {
         const delta = e.clientX - startPosition.x;
-        setWidthhere(Math.max(size.width + delta, 320));
-        dispatch(setWidth(Math.max(size.width + delta, 320)))
+        setWidthhere(Math.min(Math.max(size.width + delta, 320), 1960));
+        dispatch(setWidth(Math.min(Math.max(size.width + delta, 320), 1960)));
       }
     };
     document.addEventListener('mousemove', handleMouseMove);
@@ -34,7 +34,6 @@ function View() {
     const handleMouseUp = () => {
       setIsResizing(false);
       setSize((prevSize) => ({ ...prevSize, width: width }));
-      
     };
     document.addEventListener('mouseup', handleMouseUp);
 
@@ -52,7 +51,7 @@ function View() {
           overflow: 'auto',
           position: 'relative',
           minWidth: '320px',
-          maxWidth: '1600px',
+          maxWidth: '1960px',
           minHeight: '320px',
           maxHeight: '870px',
           
