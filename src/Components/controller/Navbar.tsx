@@ -21,29 +21,29 @@ function Navbar() {
             <div className='flex space-x-10' >
                 <div className='flex space-x-4 text-base' >
                     <h1 className='my-3 text-zinc-300 text-sm rounded-sm' >Project:</h1>
-                    <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><BsFillCloudArrowUpFill /></button>
-                    <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><FiCodepen /></button>
-                    <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><MdDelete /></button>
+                    <a className='bg-zinc-700 px-3 my-2 rounded-sm' ><BsFillCloudArrowUpFill /></a>
+                    <a className='bg-zinc-700 px-3 my-2 rounded-sm' ><FiCodepen /></a>
+                    <a className='bg-zinc-700 px-3 my-2 rounded-sm' ><MdDelete /></a>
                 </div>
                 <div className='flex space-x-4 text-base' >
                     <h1 className='my-3 text-zinc-300 text-sm' >Display:</h1>
                     <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs' >Html</button>
                     <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs' >Css</button>
                     <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs' >Code</button>
-                    <button className='bg-zinc-700 px-3 my-2 rounded-sm ' ><MdLightMode /></button>
-                    <button className='bg-zinc-700 px-3 my-2 rounded-sm ' ><BsFillPlayFill /></button>
+                    <a className='bg-zinc-700 px-3 my-2 rounded-sm ' ><MdLightMode /></a>
+                    <a className='bg-zinc-700 px-3 my-2 rounded-sm ' ><BsFillPlayFill /></a>
                 </div>
             </div>
             <div className='flex space-x-2' >
             <h1 className='my-3 text-zinc-300 text-sm' >Screen:</h1>
-                <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><SlScreenSmartphone/></button>
-                <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><SlScreenTablet /></button>
-                <button className='bg-zinc-700 px-3 my-2 rounded-sm ' ><CgScreen /></button>
-                <button className='bg-zinc-700 px-3 my-2 rounded-sm ' ><CgScreenWide /></button>
+                <a className='bg-zinc-700 px-3 my-2 rounded-sm' ><SlScreenSmartphone/></a>
+                <a className='bg-zinc-700 px-3 my-2 rounded-sm' ><SlScreenTablet /></a>
+                <a className='bg-zinc-700 px-3 my-2 rounded-sm ' ><CgScreen /></a>
+                <a className='bg-zinc-700 px-3 my-2 rounded-sm ' ><CgScreenWide /></a>
                 <h1 className='my-3 text-zinc-300 text-sm' >control:</h1>
-                <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><BiRefresh/></button>
-                <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><IoArrowUndoOutline /></button>
-                <button className='bg-zinc-700 px-3 my-2 rounded-sm ' ><IoArrowRedoOutline /></button>
+                <a className='bg-zinc-700 px-3 my-2 rounded-sm' ><BiRefresh/></a>
+                <a className='bg-zinc-700 px-3 my-2 rounded-sm' ><IoArrowUndoOutline /></a>
+                <a className='bg-zinc-700 px-3 my-2 rounded-sm ' ><IoArrowRedoOutline /></a>
                 <h1 className='p-2 text-zinc-300' >user:</h1>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' >Login</button>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' >Register</button>
