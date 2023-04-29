@@ -1,19 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
+import { selectWidth, setWidth } from '@/Redux/width/screenwidth';
 
 function View() {
 
-  const widthx = useSelector(state => state.width.width)
-  console.log(widthx)
-  const [size, setSize] = useState({ width: 991, height: 880 });
+  const widthx = useSelector(selectWidth);
+  const [width, setWidthhere] = useState(widthx);
+  const [size, setSize] = useState({ width: width, height: 880 });
   const [isResizing, setIsResizing] = useState(false);
   const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
+  const dispatch = useDispatch()
 
+  useEffect(() => {
+    setWidthhere(widthx);
+  }, [widthx]);
 
+  useEffect(() => {
+    const handleMouseMove = (e:any) => {
+      if (isResizing) {
+        const delta = e.clientX - startPosition.x;
+        setWidthhere(Math.max(size.width + delta, 320));
+        dispatch(setWidth(Math.max(size.width + delta, 320)))
+      }
+    };
+    document.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [isResizing, startPosition, size.width]);
+
+  useEffect(() => {
+    const handleMouseUp = () => {
+      setIsResizing(false);
+      setSize((prevSize) => ({ ...prevSize, width: width }));
+      
+    };
+    document.addEventListener('mouseup', handleMouseUp);
+
+    return () => {
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+
+  }, [width]);
   return (
       <div
         style={{
-          width: size.width,
+          width: width,
           height: size.height,
           resize: 'horizontal',
           overflow: 'auto',
@@ -22,7 +55,11 @@ function View() {
           maxWidth: '1600px',
           minHeight: '320px',
           maxHeight: '870px',
-
+          
+        }}
+        onMouseDown={(e) => {
+          setIsResizing(true);
+          setStartPosition({ x: e.clientX, y: e.clientY });
         }}
         className='bg-zinc-800 border-4 border-zinc-500'
       >

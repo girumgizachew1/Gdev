@@ -35,10 +35,12 @@ function Navbar() {
                 </div>
             </div>
             <div className='flex space-x-2' >
+            <h1 className='my-3 text-zinc-300 text-sm' >Screen:</h1>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><SlScreenSmartphone/></button>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><SlScreenTablet /></button>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm ' ><CgScreen /></button>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm ' ><CgScreenWide /></button>
+                <h1 className='my-3 text-zinc-300 text-sm' >control:</h1>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><BiRefresh/></button>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' ><IoArrowUndoOutline /></button>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm ' ><IoArrowRedoOutline /></button>

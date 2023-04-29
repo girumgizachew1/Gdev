@@ -13,6 +13,6 @@ const widthSlice = createSlice({
     }
   }
 })
-
+export const selectWidth = (state: { width: { width: any; }; }) => state.width.width;
 export const { setWidth } = widthSlice.actions
 export default widthSlice.reducer

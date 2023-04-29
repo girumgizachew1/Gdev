@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { FiSettings } from 'react-icons/fi';
-import { setWidth } from '@/Redux/width/screenwidth';
+import { setWidth, selectWidth } from '@/Redux/width/screenwidth';
 import { useDispatch, useSelector } from 'react-redux'
 
 function ScreenController() {
   const dispatch = useDispatch()
-  const width = useSelector(state => state.width.width)
+  const width = useSelector(selectWidth)
 
 
 
@@ -37,8 +37,6 @@ function ScreenController() {
       dispatch(setWidth(992));
 
   };
-  console.log(width)
-
   return (
     <div className="w-full h-4 bg-zinc-300 my-2 flex items-center justify-center font-normal">
       <div className={`w-full flex items-left justify-left  border-l-2 border-white ${width < 1260 && width >= 992 ? " bg-orange-400 text-zinc-800" : width < 992 ? "text-zinc-800 bg-zinc-300" : "bg-zinc-600 text-white"} `}>
