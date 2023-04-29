@@ -11,12 +11,13 @@ import { CgScreenWide } from 'react-icons/cg';
 import { CgScreen } from 'react-icons/cg';
 import { SlScreenTablet } from 'react-icons/sl';
 import { SlScreenSmartphone } from 'react-icons/sl';
-import { setWidth , selectWidth } from '@/Redux/width/screenwidth';
+import { setWidth , selectWidth } from '@/Redux/width/screenLayout';
 import { useDispatch, useSelector } from 'react-redux'
+import { selectHtmlTab ,setHtmlTab} from '@/Redux/width/screenLayout'
 function Navbar() {
     const dispatch = useDispatch()
     const width = useSelector(selectWidth)
-    
+    const htmltab = useSelector(selectHtmlTab)
     const handlePhoneClick = () =>{
         dispatch(setWidth(576))
     }
@@ -32,6 +33,9 @@ function Navbar() {
     const handlePcScreen2Click = () =>{
         dispatch(setWidth(1960))
     }
+    const handlehtmltab = () =>{
+        dispatch(setHtmlTab(!htmltab))
+      }
     
 
 
@@ -46,11 +50,11 @@ function Navbar() {
                 </div>
                 <div className='flex space-x-4 text-base' >
                     <h1 className='my-3 text-zinc-300 text-sm' >Display:</h1>
-                    <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs' >Html</button>
+                    <button onClick={handlehtmltab} className={`${htmltab ?"bg-orange-400 text-zinc-800":"bg-zinc-700"} px-3 my-2 rounded-sm text-xs`} >Html</button>
                     <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs' >Css</button>
                     <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs' >Code</button>
-                    <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm ' ><MdLightMode /></a>
-                    <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm ' ><BsFillPlayFill /></a>
+                    <a className='bg-zinc-700 px-3 my-3 pyb-1 rounded-sm ' ><MdLightMode /></a>
+                    <a className='bg-zinc-700 px-3 my-3 py-1 rounded-sm ' ><BsFillPlayFill /></a>
                 </div>
             </div>
             <div className='flex space-x-2' >

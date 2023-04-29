@@ -1,8 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit'
-import widthReducer from './width/screenwidth'
+import { configureStore } from '@reduxjs/toolkit';
+import layoutReducer from './width/screenLayout';
 
 export const store = configureStore({
-  reducer: {
-    width: widthReducer,
-    }
-})
+  reducer: layoutReducer,
+});

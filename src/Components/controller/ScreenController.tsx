@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { FiSettings } from 'react-icons/fi';
-import { setWidth, selectWidth } from '@/Redux/width/screenwidth';
+import { setWidth, selectWidth } from '@/Redux/width/screenLayout';
 import { useDispatch, useSelector } from 'react-redux'
 
 function ScreenController() {
+ 
   const dispatch = useDispatch()
   const width = useSelector(selectWidth)
 

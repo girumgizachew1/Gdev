@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { selectWidth, setWidth } from '@/Redux/width/screenwidth';
+import { selectWidth, setWidth } from '@/Redux/width/screenLayout';
 
 function View() {
 
