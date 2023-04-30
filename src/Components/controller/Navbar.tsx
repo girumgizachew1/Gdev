@@ -39,7 +39,7 @@ function Navbar() {
       }
     
       const handleCsstab = () =>{
-        dispatch(setCssTab(!htmltab))
+        dispatch(setCssTab(!csstab))
       }
     
 
