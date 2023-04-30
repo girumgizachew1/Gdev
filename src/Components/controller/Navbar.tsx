@@ -49,6 +49,10 @@ function Navbar() {
             <div className='flex space-x-10' >
                 <div className='flex space-x-4 text-base' >
                     <h1 className='my-3 text-zinc-300 text-sm rounded-sm' >Project:</h1>
+                    <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs' >New</button>
+                    <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs' >Edit</button>
+
+
                     <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm' ><BsFillCloudArrowUpFill /></a>
                     <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm' ><FiCodepen /></a>
                     <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm' ><MdDelete /></a>
@@ -73,8 +77,8 @@ function Navbar() {
                 <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm' ><IoArrowUndoOutline /></a>
                 <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm ' ><IoArrowRedoOutline /></a>
                 <h1 className='p-2 text-zinc-300' >user:</h1>
-                <button className='bg-zinc-700 px-3 my-2 rounded-sm' >Login</button>
-                <button className='bg-zinc-700 px-3 my-2 rounded-sm' >Register</button>
+                <button className='bg-zinc-700 px-3 my-2 rounded-sm' >Logout</button>
+
             </div>
 
 

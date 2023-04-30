@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { selectWidth, setWidth } from '@/Redux/width/screenLayout';
+import MainView from './View/MainView';
 
 function View() {
 
@@ -60,11 +61,11 @@ function View() {
           setIsResizing(true);
           setStartPosition({ x: e.clientX, y: e.clientY });
         }}
-        className='bg-zinc-800 border-4 border-zinc-500'
+        className='bg-white border-4 border-zinc-500'
       >
         {/* main content here */}
-        <div>
-
+        <div className='h-full w-full' >
+            <MainView/>
         </div>
 
       </div>

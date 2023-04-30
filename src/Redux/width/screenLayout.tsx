@@ -54,7 +54,6 @@ const layoutReducer = combineReducers({
   htmlTab: htmlTabSlice.reducer,
   cssTab: cssTabSlice.reducer,
 });
-
 // Export actions from slices
 export const { setWidth } = widthSlice.actions;
 export const { setHtmlTab } = htmlTabSlice.actions;
@@ -64,6 +63,7 @@ export const { setCssTab } = cssTabSlice.actions;
 export const selectWidth = (state:any) => state.width.width;
 export const selectHtmlTab = (state:any) => state.htmlTab.htmlTab;
 export const selectCssTab = (state:any) => state.cssTab.cssTab;
+
 
 // Export the root reducer
 export default layoutReducer;

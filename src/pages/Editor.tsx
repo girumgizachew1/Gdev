@@ -22,7 +22,6 @@ function Editor() {
                     <div><View /></div>
                     <div><ControlSecond /></div>
                 </div>
-
             </div>
         </div>
     )
