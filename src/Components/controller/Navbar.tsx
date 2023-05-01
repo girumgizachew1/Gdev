@@ -59,8 +59,8 @@ function Navbar() {
                 </div>
                 <div className='flex space-x-4 text-base' >
                     <h1 className='my-3 text-zinc-300 text-sm' >Display:</h1>
-                    <button onClick={handlehtmltab} className={`${htmltab ?"bg-orange-400 text-zinc-800":"bg-zinc-700"} px-3 my-2 rounded-sm text-xs`} >Html</button>
-                    <button onClick={handleCsstab} className={`${csstab ?"bg-orange-400 text-zinc-800":"bg-zinc-700"} px-3 my-2 rounded-sm text-xs`} >Css</button>
+                    <button onClick={handlehtmltab} className={`${htmltab ?"bg-orange-400 text-zinc-100":"bg-zinc-700"} px-3 my-2 rounded-sm text-xs`} >Html</button>
+                    <button onClick={handleCsstab} className={`${csstab ?"bg-orange-400 text-zinc-100":"bg-zinc-700"} px-3 my-2 rounded-sm text-xs`} >Css</button>
                     <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs' >Code</button>
                     <a className='bg-zinc-700 px-3 my-3 pyb-1 rounded-sm ' ><MdLightMode /></a>
                     <a className='bg-zinc-700 px-3 my-3 py-1 rounded-sm ' ><BsFillPlayFill /></a>
@@ -68,10 +68,10 @@ function Navbar() {
             </div>
             <div className='flex space-x-2' >
             <h1 className='my-3 text-zinc-300 text-sm' >Screen:</h1>
-                <a onClick={handlePhoneClick} className={`px-3 my-3 pt-1 rounded-sm ${width < 768 && width >= 320 ? " bg-orange-400 text-zinc-800" :"bg-zinc-700"} `} ><SlScreenSmartphone/></a>
-                <a onClick={handleTabletClick}  className={`px-3 my-3 pt-1 rounded-sm ${width < 992 && width >= 768 ? " bg-orange-400 text-zinc-800" :"bg-zinc-700"}`} ><SlScreenTablet /></a>
-                <a onClick={handlePcScreen1Click} className={`px-3 my-3 pt-1 rounded-sm  ${width < 1260 && width >= 992 ? " bg-orange-400 text-zinc-800" :"bg-zinc-700"}`} ><CgScreen /></a>
-                <a onClick={handlePcScreen2Click} className={`px-3 my-3 pt-1 rounded-sm  ${width < 1961 && width >= 1260 ? " bg-orange-400 text-zinc-800" :"bg-zinc-700"} `} ><CgScreenWide /></a>
+                <a onClick={handlePhoneClick} className={`px-3 my-3 pt-1 rounded-sm ${width < 768 && width >= 320 ? " bg-orange-400 text-zinc-100" :"bg-zinc-700"} `} ><SlScreenSmartphone/></a>
+                <a onClick={handleTabletClick}  className={`px-3 my-3 pt-1 rounded-sm ${width < 992 && width >= 768 ? " bg-orange-400 text-zinc-100" :"bg-zinc-700"}`} ><SlScreenTablet /></a>
+                <a onClick={handlePcScreen1Click} className={`px-3 my-3 pt-1 rounded-sm  ${width < 1260 && width >= 992 ? " bg-orange-400 text-zinc-100" :"bg-zinc-700"}`} ><CgScreen /></a>
+                <a onClick={handlePcScreen2Click} className={`px-3 my-3 pt-1 rounded-sm  ${width < 1961 && width >= 1260 ? " bg-orange-400 text-zinc-100" :"bg-zinc-700"} `} ><CgScreenWide /></a>
                 <h1 className='my-3 text-zinc-300 text-sm' >control:</h1>
                 <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm' ><BiRefresh/></a>
                 <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm' ><IoArrowUndoOutline /></a>
