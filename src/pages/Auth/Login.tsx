@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 function Login() {
@@ -12,7 +13,7 @@ function Login() {
                     </div>
                     <div className="flex flex-col justify-center px-8 pt-8 my-auto md:justify-start md:pt-0 md:px-24 lg:px-32">
                         <p className="text-3xl text-center">
-                            Login
+                            Gdev Login
                         </p>
                         <form className="flex flex-col pt-3 md:pt-8">
                             <div className="flex flex-col pt-4">
@@ -39,17 +40,20 @@ function Login() {
                             </div>
                             <button type="submit" className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-orange-400 shadow-md hover:text-whtie hover:bg-black focus:outline-none focus:ring-2">
                                 <span className="w-full">
-                                    Submit
+                                    Login
                                 </span>
                             </button>
                         </form>
                         <div className="pt-12 pb-12 text-center">
+                           <div className='flex justify-between' >
                             <p>
                                 Don&#x27;t have an account?
-                                <a href="#" className="font-semibold underline">
-                                    Register here.
-                                </a>
+                                
                             </p>
+                            <Link href="/Auth/Register" className="font-semibold underline">
+                                    Register here.
+                                </Link>
+                            </div> 
                         </div>
                     </div>
                 </div>

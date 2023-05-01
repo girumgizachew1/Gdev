@@ -2,7 +2,7 @@ import { combineReducers, createSlice } from '@reduxjs/toolkit';
 
 // Define initial state for width
 const initialWidthState = {
-  width: 320,
+  width: 1259,
 };
 
 // Define initial state for html tab
