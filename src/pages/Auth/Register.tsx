@@ -1,15 +1,21 @@
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios';
 import { BsFillPersonFill } from 'react-icons/bs';
 
 function Login() {
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [errorExist, setErrorExist] = useState(false)
     async function registerUser() {
         try {
           const response = await axios.post('/api/register', {
-            name: 'John Doe',
-            email: 'johndoe@example.com',
-            password: 'password123',
+            name: name,
+            email: email,
+            password: password,
           });
           console.log(response.data);
         } catch (error) {
@@ -17,8 +23,26 @@ function Login() {
         }
       }
       function handleSubmit(event:any) {
+        if (!name) {
+            setErrorExist(true)
+            setErrorMessage('Please enter your name');
+            return;
+          }
+      
+          if (!email) {
+            setErrorExist(true)
+            setErrorMessage('Please enter your email');
+            return;
+          }
+      
+          if (!password) {
+            setErrorExist(true)
+            setErrorMessage('Please enter your password');
+            return;
+          }
         event.preventDefault();
-        registerUser();
+     if(!errorExist){registerUser();}
+
       }
       
     return (
@@ -40,10 +64,10 @@ function Login() {
                                     <span className=" inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                                        <BsFillPersonFill/>
                                     </span>
-                                    <input type="text" id="design-login-email" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Full Name" />
+                                    <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}} id="design-login-email" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Full Name" />
                                 </div>
                             </div>
-                            <div className="flex flex-col pt-4">
+                             <div className="flex flex-col pt-4">
                                 <div className="flex relative ">
                                     <span className=" inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                                         <svg width="15" height="15" fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +75,7 @@ function Login() {
                                             </path>
                                         </svg>
                                     </span>
-                                    <input type="text" id="design-login-email" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Email" />
+                                    <input type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}}  id="design-login-email" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Email" />
                                 </div>
                             </div>
                             <div className="flex flex-col pt-4 mb-12">
@@ -62,7 +86,7 @@ function Login() {
                                             </path>
                                         </svg>
                                     </span>
-                                    <input type="password" id="design-login-password" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Password" />
+                                    <input type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} id="design-login-password" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Password" />
                                 </div>
                             </div>
                             <div className="flex flex-col pt-4 mb-12">
@@ -73,9 +97,11 @@ function Login() {
                                             </path>
                                         </svg>
                                     </span>
-                                    <input type="password" id="design-login-password" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Confirm Password" />
+                                    <input type="password" value={confirmPassword} onChange={(e)=>{setConfirmPassword(e.target.value)}} id="design-login-password" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Confirm Password" />
                                 </div>
                             </div>
+                            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+
                             <button type="submit" className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-orange-400 shadow-md hover:text-whtie hover:bg-black focus:outline-none focus:ring-2">
                                 <span className="w-full">
                                     Register
