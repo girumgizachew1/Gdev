@@ -1,9 +1,26 @@
 import Link from 'next/link'
 import React from 'react'
-
+import axios from 'axios';
 import { BsFillPersonFill } from 'react-icons/bs';
 
 function Login() {
+    async function registerUser() {
+        try {
+          const response = await axios.post('/api/register', {
+            name: 'John Doe',
+            email: 'johndoe@example.com',
+            password: 'password123',
+          });
+          console.log(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+      function handleSubmit(event:any) {
+        event.preventDefault();
+        registerUser();
+      }
+      
     return (
         <div className='h-screen w-full' >
             <div className="flex flex-wrap w-full">
@@ -17,7 +34,7 @@ function Login() {
                         <p className="text-3xl text-center">
                             Register To Gdev
                         </p>
-                        <form className="flex flex-col pt-3 md:pt-8">
+                        <form onSubmit={handleSubmit} className="flex flex-col pt-3 md:pt-8">
                             <div className="flex flex-col pt-4">
                                 <div className="flex relative ">
                                     <span className=" inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
