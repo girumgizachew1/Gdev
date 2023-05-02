@@ -11,29 +11,31 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const [user, setUser] = useState(null)
 
+  
   useEffect(() => {
     // get the session token from localStorage or cookies
     const token = sessionStorage.getItem('token');
     console.log('token:'+ token)
     if (token) {
-      // decode the token to get the user IDS
+      // decode the token to get the user ID
       const { userId }:any = jwtDecode(token)
       console.log('userID:'+ userId)
 
-      // send a request to the server with the token
-      axios.get(`/api/user/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` }
+      axios({
+        method: 'get',
+        url: '/api/user',
+        headers: { Authorization: `Bearer ${token}` },
+        params: { userId }
       })
-      .then(response => {
-        // set the user data in state
-        setUser(response.data)
-      })
-      .catch(error => {
-        console.log("error")
-      })
+        .then(response => {
+          // set the user data in state
+          setUser(response.data)
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }, [])
-
   return (
     <div>
       <Head>
