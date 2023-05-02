@@ -1,7 +1,65 @@
 import Link from 'next/link'
-import React from 'react'
-
+import React, { useState } from 'react'
+import axios from 'axios'
+import { useRouter } from 'next/router'
+import { getSession, signIn, useSession } from "next-auth/react"
+import { toast } from 'react-toastify'
 function Login() {
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const router = useRouter()
+    const [errors, setErrors] = useState('')
+    const [isErrors, setISErrors] = useState(false)
+    const [isLoading, setIsLoading] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(false);
+
+
+    const handleSubmit = async (event: any) => {
+        event.preventDefault();
+        setISErrors(false);
+        setErrors("");
+      
+        // validate form
+        // Check for empty name
+        if (!email) {
+          setISErrors(true);
+          setErrors("Please enter your email");
+          return;
+        }
+      
+        // Check for empty email and valid email format
+        if (!email) {
+          setISErrors(true);
+          setErrors("Please enter your Password");
+          return;
+        }
+      
+        if (!isErrors) {
+          setIsLoading(true);
+          try {
+            const result:any = await signIn("credentials", {
+              email,
+              password,
+              redirect: false,
+            });
+      
+            if (result.error) {
+              throw new Error(result.error);
+            }
+      
+            router.push("/Editor");
+            toast.success("Login successful");
+          } catch (error: any) {
+            setIsLoading(false);
+            setIsRegistered(false);
+            toast.error(error.message);
+            setErrors(error.message);
+          }
+        }
+      };
+      
+      
+
     return (
         <div className='h-screen w-full' >
             <div className="flex flex-wrap w-full">
@@ -15,7 +73,7 @@ function Login() {
                         <p className="text-3xl text-center">
                             Gdev Login
                         </p>
-                        <form className="flex flex-col pt-3 md:pt-8">
+                        <form onSubmit={handleSubmit} className="flex flex-col pt-3 md:pt-8">
                             <div className="flex flex-col pt-4">
                                 <div className="flex relative ">
                                     <span className=" inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
@@ -24,7 +82,7 @@ function Login() {
                                             </path>
                                         </svg>
                                     </span>
-                                    <input type="text" id="design-login-email" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Email" />
+                                    <input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }} id="design-login-email" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Email" />
                                 </div>
                             </div>
                             <div className="flex flex-col pt-4 mb-12">
@@ -35,9 +93,18 @@ function Login() {
                                             </path>
                                         </svg>
                                     </span>
-                                    <input type="password" id="design-login-password" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Password" />
+                                    <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} id="design-login-password" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Password" />
                                 </div>
                             </div>
+                            {isLoading ? (
+                                <p className="mb-4 text-orange-400">Loading...</p>
+                            ) : isRegistered ? (
+                                <p className="mb-4 text-green-500">Loggedin successfully!</p>
+                            ) : (
+                                errors && <p className="mb-4 text-red-500">{errors}</p>
+                            )}
+
+
                             <button type="submit" className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-orange-400 shadow-md hover:text-whtie hover:bg-black focus:outline-none focus:ring-2">
                                 <span className="w-full">
                                     Login
@@ -45,16 +112,17 @@ function Login() {
                             </button>
                         </form>
                         <div className="pt-12 pb-12 text-center">
-                           <div className='flex justify-between' >
-                            <p>
-                                Don&#x27;t have an account?
-                                
-                            </p>
-                            <Link href="/Auth/Register" className="font-semibold underline">
+                            <div className='flex justify-between' >
+                                <p>
+                                    Don&#x27;t have an account?
+
+                                </p>
+                                <Link href="/Auth/Register" className="font-semibold underline">
                                     Register here.
                                 </Link>
-                            </div> 
+                            </div>
                         </div>
+                        <button onClick={() => signIn("google")}>Sign in with Google</button>
                     </div>
                 </div>
                 <div className="w-1/2  bg-zinc-200">

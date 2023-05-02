@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 import axios from 'axios';
 import { BsFillPersonFill } from 'react-icons/bs';
-
+import { useRouter } from 'next/router'
 function Login() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -10,41 +10,84 @@ function Login() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [errorExist, setErrorExist] = useState(false)
+    const [errorMessagePassword, setErrorMessagePassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const [isRegistered, setIsRegistered] = useState(false);
+    const router = useRouter()
+
     async function registerUser() {
+        setIsLoading(true);
         try {
-          const response = await axios.post('/api/register', {
-            name: name,
-            email: email,
-            password: password,
-          });
-          console.log(response.data);
+            const response = await axios.post('/api/register', {
+                name: name,
+                email: email,
+                password: password,
+            });
+            console.log(response.data);
+            setIsLoading(false);
+            setIsRegistered(true);
+            router.push('/Auth/Login')
         } catch (error) {
-          console.error(error);
+            console.error(error);
+            setIsLoading(false);
+            setIsRegistered(false);
+            setErrorExist(true);
+            setErrorMessage('An error occurred during registration. Please try again later.');
         }
-      }
-      function handleSubmit(event:any) {
+    }
+
+    function handleSubmit(event: any) {
+        event.preventDefault();
+        setErrorExist(false);
+        setErrorMessage('');
+        setErrorMessagePassword('');
+
+        // Check for empty name
         if (!name) {
             setErrorExist(true)
-            setErrorMessage('Please enter your name');
+            setErrorMessage('Please enter your Full name');
             return;
-          }
-      
-          if (!email) {
+        }
+
+        // Check for empty email and valid email format
+        if (!email) {
             setErrorExist(true)
             setErrorMessage('Please enter your email');
             return;
-          }
-      
-          if (!password) {
+        } else if (!/\S+@\S+\.\S+/.test(email)) {
+            setErrorExist(true)
+            setErrorMessage('Please enter a valid email address');
+            return;
+        }
+        // Check for empty password and password strength
+        if (!password) {
             setErrorExist(true)
             setErrorMessage('Please enter your password');
             return;
-          }
-        event.preventDefault();
-     if(!errorExist){registerUser();}
+        } else if (password.length < 8) {
+            setErrorExist(true)
+            setErrorMessagePassword('Password must be at least 8 characters long')
 
-      }
-      
+            return;
+        } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}/.test(password)) {
+            setErrorExist(true)
+            setErrorMessagePassword('Password must contain at least one lowercase letter, one uppercase letter, and one number');
+            return;
+        }
+
+        // Check if confirm password matches password
+        if (password !== confirmPassword) {
+            setErrorExist(true)
+            setErrorMessage('Confirm password must match password');
+            return;
+        }
+
+        if (errorExist) { registerUser(); }
+
+    }
+
+
+
     return (
         <div className='h-screen w-full' >
             <div className="flex flex-wrap w-full">
@@ -62,12 +105,12 @@ function Login() {
                             <div className="flex flex-col pt-4">
                                 <div className="flex relative ">
                                     <span className=" inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
-                                       <BsFillPersonFill/>
+                                        <BsFillPersonFill />
                                     </span>
-                                    <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}} id="design-login-email" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Full Name" />
+                                    <input type="text" value={name} onChange={(e) => { setName(e.target.value) }} id="design-login-name" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Full Name" />
                                 </div>
                             </div>
-                             <div className="flex flex-col pt-4">
+                            <div className="flex flex-col pt-4">
                                 <div className="flex relative ">
                                     <span className=" inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
                                         <svg width="15" height="15" fill="currentColor" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +118,7 @@ function Login() {
                                             </path>
                                         </svg>
                                     </span>
-                                    <input type="text" value={email} onChange={(e)=>{setEmail(e.target.value)}}  id="design-login-email" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Email" />
+                                    <input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }} id="design-login-email" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Email" />
                                 </div>
                             </div>
                             <div className="flex flex-col pt-4 mb-12">
@@ -86,9 +129,10 @@ function Login() {
                                             </path>
                                         </svg>
                                     </span>
-                                    <input type="password" value={password} onChange={(e)=>{setPassword(e.target.value)}} id="design-login-password" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Password" />
+                                    <input type="password" value={password} onChange={(e) => { setPassword(e.target.value) }} id="design-login-password" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Password" />
                                 </div>
                             </div>
+                            {errorMessagePassword && <p className="mb-4 text-red-500">{errorMessagePassword}</p>}
                             <div className="flex flex-col pt-4 mb-12">
                                 <div className="flex relative ">
                                     <span className=" inline-flex  items-center px-3 border-t bg-white border-l border-b  border-gray-300 text-gray-500 shadow-sm text-sm">
@@ -97,10 +141,16 @@ function Login() {
                                             </path>
                                         </svg>
                                     </span>
-                                    <input type="password" value={confirmPassword} onChange={(e)=>{setConfirmPassword(e.target.value)}} id="design-login-password" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Confirm Password" />
+                                    <input type="password" value={confirmPassword} onChange={(e) => { setConfirmPassword(e.target.value) }} id="design-login-password" className=" flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent" placeholder="Confirm Password" />
                                 </div>
                             </div>
-                            {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+                            {isLoading ? (
+                                <p className="mb-4 text-orange-400">Loading...</p>
+                            ) : isRegistered ? (
+                                <p className="mb-4 text-green-500">Registered successfully!</p>
+                            ) : (
+                                errorMessage && <p className="mb-4 text-red-500">{errorMessage}</p>
+                            )}
 
                             <button type="submit" className="w-full px-4 py-2 text-base font-semibold text-center text-white transition duration-200 ease-in bg-orange-400 shadow-md hover:text-whtie hover:bg-black focus:outline-none focus:ring-2">
                                 <span className="w-full">
