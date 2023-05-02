@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { getSession, signIn, useSession } from "next-auth/react"
+
 import { toast } from 'react-toastify'
 function Login() {
     const [password, setPassword] = useState('')
@@ -15,50 +16,62 @@ function Login() {
 
 
     const handleSubmit = async (event: any) => {
-        event.preventDefault();
+        event.preventDefault()
         setISErrors(false);
-        setErrors("");
-      
+        setErrors('');
+
         // validate form
         // Check for empty name
         if (!email) {
-          setISErrors(true);
-          setErrors("Please enter your email");
-          return;
+            setISErrors(true)
+            setErrors('Please enter your email');
+            return;
         }
-      
+
         // Check for empty email and valid email format
         if (!email) {
-          setISErrors(true);
-          setErrors("Please enter your Password");
-          return;
+            setISErrors(true)
+            setErrors('Please enter your Password');
+            return;
         }
-      
         if (!isErrors) {
-          setIsLoading(true);
-          try {
-            const result:any = await signIn("credentials", {
-              email,
-              password,
-              redirect: false,
-            });
-      
-            if (result.error) {
-              throw new Error(result.error);
+            setIsLoading(true);
+            try {
+                const response = await axios.post('/api/Login', {
+                    email,
+                    password,
+                })
+
+                setIsLoading(false);
+                setIsRegistered(true);
+
+                // set the session with the token
+                const { token } = response.data;
+                sessionStorage.setItem('token', token);
+              
+                router.push('/Editor')
+                // display a success message
+                toast.success('Login successful')
+            } catch (error: any) {
+                setIsLoading(false);
+                setIsRegistered(false)
+                // handle failed login here
+                if (error.response.status === 404) {
+                    // user not found
+                    toast.error('User not found')
+                    setErrors('User not found')
+                } else if (error.response.status === 401) {
+                    // invalid credentials
+                    toast.error('Invalid credentials')
+                    setErrors('Invalid credentials')
+                } else {
+                    // other errors
+                    toast.error('An error occurred')
+                    setErrors('An error occurred')
+                }
             }
-      
-            router.push("/Editor");
-            toast.success("Login successful");
-          } catch (error: any) {
-            setIsLoading(false);
-            setIsRegistered(false);
-            toast.error(error.message);
-            setErrors(error.message);
-          }
         }
-      };
-      
-      
+    }
 
     return (
         <div className='h-screen w-full' >

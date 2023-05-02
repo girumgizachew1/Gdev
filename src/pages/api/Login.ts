@@ -13,7 +13,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     // get the user data from the request body
     const { email, password } = req.body;
-console.log(email)
+
     // find the user with the provided email
     const user = await collection.findOne({ email });
 
@@ -31,10 +31,11 @@ console.log(email)
     }
 
     // generate a JWT token
-    const token = jwt.sign({ userId: user._id }, 'my-secret-key', { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, 'gdev', { expiresIn: '1h' });
 
     // return the token to the client
     res.status(200).json({ message: 'Login successful', token });
+    
   } else {
     // return 405 Method Not Allowed for any other HTTP methods
     res.status(405).json({ message: 'Method Not Allowed' });
