@@ -16,7 +16,7 @@ const htmlCodeSlice = createSlice({
 });
 
 export const { sethtmlcode } = htmlCodeSlice.actions;
-export const selectHtmlCode = (state: any) => state.htmlcode.htmlcode;
+export const selectHtmlCode = ({htmlCodeContent}: any) => htmlCodeContent.htmlcode.htmlcode;
 
 // Combine reducers
 const HtmlCodeReducer = combineReducers({

@@ -7,15 +7,20 @@ const AceEditor = dynamic(() => import('react-ace'), { ssr: false })
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-css';
 import 'ace-builds/src-noconflict/theme-twilight';
-
+import { useDispatch } from 'react-redux';
+import { sethtmlcode } from '@/Redux/Htmlcontent/htmlcode';
+import { setcsscode } from '@/Redux/Csscontent/csscode';
 function CodeEditor() {
+    const dispatch = useDispatch()
     const [htmlCode, setHtmlCode] = useState('');
     const [cssCode, setCssCode] = useState('');
     const codeTabContol = useSelector(selectCodeTab)
     function handleHtmlChange(value: string) {
+        dispatch(sethtmlcode(value))
         setHtmlCode(value);
     }
     function handleCssChange(value: string) {
+        dispatch(setcsscode(value))
         setCssCode(value);
     }
     return (
