@@ -124,19 +124,8 @@ function Login() {
                                 </span>
                             </button>
                         </form>
-                        <div className="pt-12 pb-12 text-center">
-                            <div className='flex justify-between' >
-                                <p>
-                                    Don&#x27;t have an account?
-
-                                </p>
-                                <Link href="/Auth/Register" className="font-semibold underline">
-                                    Register here.
-                                </Link>
-                            </div>
-                        </div>
-                        <button onClick={() => signIn("google")}>Sign in with Google</button>
-                    </div>
+                        
+                     </div>
                 </div>
                 <div className="w-1/2  bg-zinc-200">
                     <img className="hidden object-center w-full h-screen md:block" src="/loginback2.jpg" />

@@ -11,7 +11,6 @@ export default async function userHandler(req: NextApiRequest, res: NextApiRespo
     // get the user collection
     const collection = db.collection('users');
     // Ensure only authenticated users can access this route
-    const session = await getSession({ req });
  
     if (!session) {
         res.status(401).json({ message: 'Unauthorizedd' });

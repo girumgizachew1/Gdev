@@ -37,11 +37,12 @@ function Login() {
     }
 
     function handleSubmit(event: any) {
+
         event.preventDefault();
         setErrorExist(false);
         setErrorMessage('');
         setErrorMessagePassword('');
-
+        console.log('hey')
         // Check for empty name
         if (!name) {
             setErrorExist(true)
@@ -82,13 +83,16 @@ function Login() {
             return;
         }
 
-        if (errorExist) { registerUser(); }
+        if (!errorExist) { 
+            console.log('ehy')
+            registerUser(); }
 
     }
 
 
 
     return (
+
         <div className='h-screen w-full' >
             <div className="flex flex-wrap w-full">
                 <div className="flex flex-col w-full md:w-1/2">
