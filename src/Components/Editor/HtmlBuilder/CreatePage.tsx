@@ -31,7 +31,7 @@ function CreatePage() {
 
           <div className='z-10 fixed top-20 left-80 bg-zinc-800 text-xs text-white p-6 w-fit  rounded shadow-md opacity-100 text-black  space-y-4 px-3'>
             <div className='flex justify-between  py-2 ' >
-              <h2 className='text-lg font-semibold  '>Create a new page</h2>
+              <h2 className='text-sm font-semibold  '>Create a new page</h2>
               <button type='button' className="px-2 text-base rounded-full font-semibold text-center text-black transition duration-200 ease-in hover:bg-black hover:text-white focus:outline-none focus:ring-2" onClick={closeModal}>X</button>
           
             </div>
