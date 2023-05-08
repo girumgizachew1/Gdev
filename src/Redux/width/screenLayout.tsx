@@ -1,5 +1,18 @@
 import { combineReducers, createSlice } from '@reduxjs/toolkit';
 
+interface RootState {
+  width: {
+    width: number;
+  };
+  htmlTab: {
+    htmlTab: boolean;
+  };
+  cssTab: {
+    cssTab: boolean;
+  };
+}
+
+
 // Define initial state for width
 const initialWidthState = {
   width: 1259,
@@ -60,9 +73,10 @@ export const { setHtmlTab } = htmlTabSlice.actions;
 export const { setCssTab } = cssTabSlice.actions;
 
 // Export selectors for state
-export const selectWidth = (state:any) => state.width.width;
-export const selectHtmlTab = (state:any) => state.htmlTab.htmlTab;
-export const selectCssTab = (state:any) => state.cssTab.cssTab;
+export const selectWidth = ({ layout }: any) => layout.width.width;
+export const selectHtmlTab = ({ layout }: any) => layout.htmlTab.htmlTab;
+export const selectCssTab = ({ layout }: any) => layout.cssTab.cssTab;
+
 
 
 // Export the root reducer

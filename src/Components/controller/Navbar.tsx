@@ -7,6 +7,7 @@ import { BiRefresh } from 'react-icons/bi';
 import { IoArrowRedoOutline } from 'react-icons/io5';
 import { IoArrowUndoOutline } from 'react-icons/io5';
 import { FiCodepen } from 'react-icons/fi';
+import { FaCaretDown } from 'react-icons/fa';
 import { CgScreenWide } from 'react-icons/cg';
 import { CgScreen } from 'react-icons/cg';
 import { SlScreenTablet } from 'react-icons/sl';
@@ -16,6 +17,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectHtmlTab, selectCssTab, setCssTab, setHtmlTab } from '@/Redux/width/screenLayout'
 import NewModal from './Modal/NewModal';
 import EditModal from './Modal/EditModal';
+import { selectProjectId, setProjectId } from '@/Redux/ProjectStructure/Project';
 function Navbar() {
     const dispatch = useDispatch()
     const width = useSelector(selectWidth)
@@ -23,6 +25,7 @@ function Navbar() {
     const csstab = useSelector(selectCssTab)
     const [newModal, setNewModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
+    const projectid = useSelector(selectProjectId)
     const handlePhoneClick = () => {
         dispatch(setWidth(576))
     }
@@ -64,24 +67,34 @@ function Navbar() {
     }, []);
 
     const handleProjectClick = (project: any) => {
-        console.log('hey')
+
+        dispatch(setProjectId(project._id))
         setSelectedProject(project.projectname)
+        setEditModal(!editModal)
+
         // perform any action on project selection
     };
-    console.log(selectedProject)
     return (
         <div className='flex items-center justify-between text-zinc-300 text-sm px-6' >
             <div className='flex space-x-10' >
                 <div className='flex space-x-4 text-base' >
-                    <h1 className='my-3 text-zinc-300 text-sm rounded-sm' >Project:</h1>
+                    <a className="">
+                        <img
+                            className="brand-logo__icon"
+                            src="/logo2.png" width={40} height={30}
+                            alt="Girum gizachew logo"
+                        />
+                    </a>
                     <button onClick={newModalHandler} className='bg-zinc-700 px-3 my-2 rounded-sm text-xs ' >New</button>
 
                     {newModal && <NewModal />}
-                    <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs'>
-                        {selectedProject || 'Switch Project'}
-                    </button>
-                    <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm ' ><IoArrowRedoOutline /></a>
-                    {projects.length > 0 && (
+                    <div className='flex'>
+                        <div className='bg-zinc-700 px-3 pt-2  my-2 text-xs'>
+                            {selectedProject || 'Select Project'}
+                        </div>
+                        <button onClick={() => { setEditModal(!editModal) }} className='bg-orange-400 px-3 my-2 ' ><FaCaretDown /></button>
+                    </div>
+                    {projects.length > 0 && editModal && (
                         <div className="fixed top-10 left-40 w-fit h-fit bg-zinc-900 bg-opacity-95 flex z-50 text-xs p-6">
                             {projects.map((project: any) => (
                                 <button
