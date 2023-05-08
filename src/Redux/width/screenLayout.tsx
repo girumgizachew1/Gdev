@@ -10,6 +10,9 @@ interface RootState {
   cssTab: {
     cssTab: boolean;
   };
+  codeTab: {
+    codeTab: boolean;
+  };
 }
 
 
@@ -26,6 +29,11 @@ const initialHtmlTabState = {
 // Define initial state for css tab
 const initialCssTabState = {
   cssTab: true,
+};
+
+// Define initial state for code tab
+const initialCodeTabState = {
+  codeTab: true,
 };
 
 // Create a slice for width state
@@ -61,21 +69,36 @@ const cssTabSlice = createSlice({
   },
 });
 
+// Create a slice for code tab state
+const codeTabSlice = createSlice({
+  name: 'codeTab',
+  initialState: initialCodeTabState,
+  reducers: {
+    setCodeTab: (state, action) => {
+      state.codeTab = action.payload;
+    },
+  },
+});
+
 // Combine the slices into a root reducer
 const layoutReducer = combineReducers({
   width: widthSlice.reducer,
   htmlTab: htmlTabSlice.reducer,
   cssTab: cssTabSlice.reducer,
+  codeTab: codeTabSlice.reducer,
 });
 // Export actions from slices
 export const { setWidth } = widthSlice.actions;
 export const { setHtmlTab } = htmlTabSlice.actions;
 export const { setCssTab } = cssTabSlice.actions;
 
+export const { setCodeTab } = codeTabSlice.actions;
+
 // Export selectors for state
 export const selectWidth = ({ layout }: any) => layout.width.width;
 export const selectHtmlTab = ({ layout }: any) => layout.htmlTab.htmlTab;
 export const selectCssTab = ({ layout }: any) => layout.cssTab.cssTab;
+export const selectCodeTab = ({ layout }: any) => layout.codeTab.codeTab;
 
 
 

@@ -6,6 +6,9 @@ import ScreenController from '../Components/controller/ScreenController'
 import Navbar from '@/Components/controller/Navbar'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectHtmlTab } from '@/Redux/width/screenLayout'
+import dynamic from 'next/dynamic'
+const CodeEditor = dynamic(() => import('@/Components/Editor/View/CodeEditor'), { ssr: false })
+
 function Editor() {
     const htmltabcontrol = useSelector(selectHtmlTab)
   
@@ -25,6 +28,9 @@ function Editor() {
                     <div><View /></div>
                     <div><ControlSecond /></div>
                 </div>
+            </div>
+            <div>
+                <CodeEditor/>
             </div>
         </div>
     )

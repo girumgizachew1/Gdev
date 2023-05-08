@@ -12,7 +12,7 @@ import { CgScreenWide } from 'react-icons/cg';
 import { CgScreen } from 'react-icons/cg';
 import { SlScreenTablet } from 'react-icons/sl';
 import { SlScreenSmartphone } from 'react-icons/sl';
-import { setWidth, selectWidth } from '@/Redux/width/screenLayout';
+import { setWidth, selectWidth, selectCodeTab, setCodeTab } from '@/Redux/width/screenLayout';
 import { useDispatch, useSelector } from 'react-redux'
 import { selectHtmlTab, selectCssTab, setCssTab, setHtmlTab } from '@/Redux/width/screenLayout'
 import NewModal from './Modal/NewModal';
@@ -23,6 +23,8 @@ function Navbar() {
     const width = useSelector(selectWidth)
     const htmltab = useSelector(selectHtmlTab)
     const csstab = useSelector(selectCssTab)
+    const codetab = useSelector(selectCodeTab)
+
     const [newModal, setNewModal] = useState(false)
     const [editModal, setEditModal] = useState(false)
     const projectid = useSelector(selectProjectId)
@@ -47,6 +49,9 @@ function Navbar() {
 
     const handleCsstab = () => {
         dispatch(setCssTab(!csstab))
+    }
+    const handleCodetab = () => {
+        dispatch(setCodeTab(!codetab))
     }
 
     const newModalHandler = () => {
@@ -118,7 +123,7 @@ function Navbar() {
                     <h1 className='my-3 text-zinc-300 text-sm' >Display:</h1>
                     <button onClick={handlehtmltab} className={`${htmltab ? "bg-orange-400 text-zinc-100" : "bg-zinc-700"} px-3 my-2 rounded-sm text-xs`} >Html</button>
                     <button onClick={handleCsstab} className={`${csstab ? "bg-orange-400 text-zinc-100" : "bg-zinc-700"} px-3 my-2 rounded-sm text-xs`} >Css</button>
-                    <button className='bg-zinc-700 px-3 my-2 rounded-sm text-xs' >Code</button>
+                    <button  onClick={handleCodetab} className={`${codetab ? "bg-orange-400 text-zinc-100" : "bg-zinc-700"} px-3 my-2 rounded-sm text-xs`} >Code</button>
                     <a className='bg-zinc-700 px-3 my-3 pyb-1 rounded-sm ' ><MdLightMode /></a>
                     <a className='bg-zinc-700 px-3 my-3 py-1 rounded-sm ' ><BsFillPlayFill /></a>
                 </div>

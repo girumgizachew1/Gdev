@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { selectWidth, setWidth } from '@/Redux/width/screenLayout';
 import MainView from './View/MainView';
+import CodeEditor from './View/CodeEditor';
 
 function View() {
 
@@ -65,7 +66,9 @@ function View() {
       >
         {/* main content here */}
         <div className='h-full w-full' >
+         
             <MainView/>
+
         </div>
 
       </div>
