@@ -68,7 +68,7 @@ function ScreenController() {
         <a>
           <FiSettings />
         </a>
-        <h1 className='flex my-2' >X:{width}px  Y:880px</h1>
+        <h1 className='flex my-2 text-sm' >X:{width}px  Y:880px</h1>
         <p></p>
       </div>
 

@@ -133,7 +133,7 @@ function Navbar() {
                 <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm' ><BiRefresh /></a>
                 <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm' ><IoArrowUndoOutline /></a>
                 <a className='bg-zinc-700 px-3 my-3 pt-1 rounded-sm ' ><IoArrowRedoOutline /></a>
-                <h1 className='p-2 text-zinc-300' >user:</h1>
+                <h1 className='p-2 text-sm text-zinc-300' >user:</h1>
                 <button className='bg-zinc-700 px-3 my-2 rounded-sm' >Logout</button>
 
             </div>
