@@ -8,14 +8,17 @@ import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-css';
 import 'ace-builds/src-noconflict/theme-twilight';
 import { useDispatch } from 'react-redux';
-import { sethtmlcode } from '@/Redux/Htmlcontent/htmlcode';
-import { setcsscode } from '@/Redux/Csscontent/csscode';
-import { setJscode } from '@/Redux/Jscontent/jscontent';
+import { selectHtmlCode, sethtmlcode } from '@/Redux/Htmlcontent/htmlcode';
+import { selectCssCode, setcsscode } from '@/Redux/Csscontent/csscode';
+import { selectJsCode, setJscode } from '@/Redux/Jscontent/jscontent';
 function CodeEditor() {
     const dispatch = useDispatch()
     const [htmlCode, setHtmlCode] = useState('');
     const [cssCode, setCssCode] = useState('');
     const [jsCode, setJSCode] = useState('');
+    const html = useSelector(selectHtmlCode)
+  const css = useSelector(selectCssCode);
+  const js = useSelector(selectJsCode);
     const codeTabContol = useSelector(selectCodeTab)
     function handleHtmlChange(value: string) {
         dispatch(sethtmlcode(value))
