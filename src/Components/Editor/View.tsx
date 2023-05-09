@@ -62,7 +62,7 @@ function View() {
           setIsResizing(true);
           setStartPosition({ x: e.clientX, y: e.clientY });
         }}
-        className='bg-white border border-cyan-500'
+        className='bg-white border border-cyan-500 border-r-4 border-zinc-800'
       >
         {/* main content here */}
         <div className='h-6 bg-zinc-800' >
