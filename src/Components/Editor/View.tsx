@@ -62,9 +62,12 @@ function View() {
           setIsResizing(true);
           setStartPosition({ x: e.clientX, y: e.clientY });
         }}
-        className='bg-white border border-cyan-500 p-2'
+        className='bg-white border border-cyan-500'
       >
         {/* main content here */}
+        <div className='h-6 bg-zinc-800' >
+          <h1 className='text-zinc-300 text-center' >drag here to change screen size</h1>
+        </div>
         <div className='h-full w-full' >
          
             <MainView/>

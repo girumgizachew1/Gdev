@@ -10,10 +10,12 @@ import 'ace-builds/src-noconflict/theme-twilight';
 import { useDispatch } from 'react-redux';
 import { sethtmlcode } from '@/Redux/Htmlcontent/htmlcode';
 import { setcsscode } from '@/Redux/Csscontent/csscode';
+import { setJscode } from '@/Redux/Jscontent/jscontent';
 function CodeEditor() {
     const dispatch = useDispatch()
     const [htmlCode, setHtmlCode] = useState('');
     const [cssCode, setCssCode] = useState('');
+    const [jsCode, setJSCode] = useState('');
     const codeTabContol = useSelector(selectCodeTab)
     function handleHtmlChange(value: string) {
         dispatch(sethtmlcode(value))
@@ -23,8 +25,12 @@ function CodeEditor() {
         dispatch(setcsscode(value))
         setCssCode(value);
     }
+    function handleJsChange(value: string) {
+        dispatch(setJscode(value))
+        setJSCode(value);
+    }
     return (
-        <div className='bottom-0 left-80 right-80 fixed h-[40vh] w-[105vh]' >
+        <div className='bottom-10 z-50 left-40 right-80 fixed h-[40vh] w-[155vh]' >
             <div className={`ml-4 bg-zinc-900 w-full border-6 border-zinc-500 h-full rounded-sm ${codeTabContol ? "" : "hidden"}  `} >
                 <div className='flex flex-col w-full h-full' >
                     <div className='h-8 w-full flex justify-between ' >
@@ -33,6 +39,7 @@ function CodeEditor() {
                     </div>
                     <div className='h-full w-full flex ' >
                         <div className='h-full w-full bg-zinc-900' >
+                            <h1 className='text-center text-zinc-500' >Html</h1>
                             <AceEditor
                                 mode="html"
                                 className='w-full'
@@ -45,13 +52,29 @@ function CodeEditor() {
                             />
                         </div>
                         <div className='h-full w-full bg-zinc-900' >
-                        <AceEditor
+                            <h1 className='text-center text-zinc-500' >css</h1>
+
+                            <AceEditor
                                 mode="css"
                                 className='w-full'
                                 fontSize={14}
                                 theme="twilight"
                                 value={cssCode}
                                 onChange={handleCssChange}
+                                name="html-editor"
+                                editorProps={{ $blockScrolling: true }}
+                            />
+                        </div>
+                        <div className='h-full w-full bg-zinc-900' >
+                            <h1 className='text-center text-zinc-500' >JavaScript</h1>
+
+                            <AceEditor
+                                mode="javascript"
+                                className='w-full'
+                                fontSize={14}
+                                theme="twilight"
+                                value={jsCode}
+                                onChange={handleJsChange}
                                 name="html-editor"
                                 editorProps={{ $blockScrolling: true }}
                             />
