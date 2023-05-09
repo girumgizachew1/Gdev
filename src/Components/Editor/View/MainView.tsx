@@ -9,10 +9,11 @@ function MainView() {
   const html = useSelector(selectHtmlCode)
   const css = useSelector(selectCssCode);
   const js = useSelector(selectJsCode);
-  const [htmlContent, setHtmlContent] = useState(html);
+
   const handleHtmlChange = (event:any) => {
-    setHtmlContent(event.target.innerHTML);
+    
     dispatch(sethtmlcode(event.target.innerHTML))
+    console.log(html)
   };
 
   const iframeContent = `
@@ -21,7 +22,7 @@ function MainView() {
         <style>${css}</style>
       </head>
       <body>
-        <div contentEditable onInput={handleHtmlChange}>${htmlContent || 'Type something here'}</div>
+        <div contentEditable onChange={handleHtmlChange}>${html}</div>
         <script>${js}</script>
       </body>
     </html>

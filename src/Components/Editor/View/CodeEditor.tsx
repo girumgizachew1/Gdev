@@ -48,7 +48,7 @@ function CodeEditor() {
                                 className='w-full'
                                 fontSize={14}
                                 theme="twilight"
-                                value={htmlCode}
+                                value={html}
                                 onChange={handleHtmlChange}
                                 name="html-editor"
                                 editorProps={{ $blockScrolling: true }}
